@@ -86,7 +86,15 @@ const uploader = new FineUploaderS3({
       // endpoint:this.successPage()
       onComplete:function(id, name, response) {
         // document.getElementsByClassName("hideOnUpload").style.display= "none"
-        document.getElementById("myProgress").style.display ='none'
+        var abc  = document.getElementById("react").parentElement
+        var att = document.createAttribute("id");       // Create a "class" attribute
+        att.value = "demoid";                           // Set the value of the class attribute
+        abc.setAttributeNode(att); 
+        console.log(abc)
+        setTimeout(()=>{
+          document.getElementById('demoid').style.display ='none'
+          // document.getElementById("myProgress").style.display ='none'
+        })
       }
       
     },
