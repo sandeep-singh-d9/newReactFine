@@ -12,3 +12,9 @@
   margin-right: auto;
   text-align: center;
 }
+.displayOnSuccess{
+  text-align: center  
+}
+#successProgress{
+  display: none;
+}

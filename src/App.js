@@ -85,16 +85,21 @@ const uploader = new FineUploaderS3({
     callbacks: {
       // endpoint:this.successPage()
       onComplete:function(id, name, response) {
-        // document.getElementsByClassName("hideOnUpload").style.display= "none"
-        var abc  = document.getElementById("react").parentElement
-        var att = document.createAttribute("id");       // Create a "class" attribute
-        att.value = "demoid";                           // Set the value of the class attribute
-        abc.setAttributeNode(att); 
-        console.log(abc)
-        setTimeout(()=>{
-          document.getElementById('demoid').style.display ='none'
-          // document.getElementById("myProgress").style.display ='none'
-        })
+        if(response.success){
+          // document.getElementsByClassName("hideOnUpload").style.display= "none"
+          var abc  = document.getElementById("react").parentElement
+          var att = document.createAttribute("id");       // Create a "class" attribute
+          att.value = "demoid";                           // Set the value of the class attribute
+          abc.setAttributeNode(att); 
+          //
+          document.getElementById('successHide').style.display='none'
+          document.getElementById('successProgress').style.display='block'
+          console.log(abc)
+          setTimeout(()=>{
+            document.getElementById('demoid').style.display ='none'
+            // document.getElementById("myProgress").style.display ='none'
+          })
+        }
       }
       
     },
@@ -145,10 +150,12 @@ class App extends Component {
    }
     return (
       <div className="App">
-        <h1 className="centered">Secure 'Serverless' File Uploads with AWS Lambda, S3, and Zappa</h1>
-        <div id="myProgress"> 
-        <Gallery className="gallery"  uploader={uploader}/>
+        <h1 id = "successHide" className="centered">Secure 'Serverless' File Uploads with AWS Lambda, S3, and Zappa</h1>
+        <div id="successProgress" className="displayOnSuccess"> 
+        <h1>  Document successfully uploaded </h1> 
         </div>
+        <Gallery className="gallery"  uploader={uploader}/>
+        
       </div>
     );
   }
